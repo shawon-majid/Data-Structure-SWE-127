@@ -31,7 +31,7 @@ int main(){
     printf("Enter the size of postfix: ");
     scanf("%d", &n);
     char postfix[n+1][5];
-    printf("Enter the postfix: ");
+    printf("Enter the postfix(press space after each object): ");
     for(int i = 0; i < n; i++){
         char temp[5];
         scanf("%s", temp);
@@ -56,34 +56,40 @@ int main(){
             int a, b, ans;
             if(postfix[i][0] == '+'){
                 a = stk[top];
-                b = stk[top-1];
+                POP();
+                b = stk[top];
+                POP();
+
                 ans = b+a;
-                POP(); // popping a
-                POP(); // popping b
+
                 PUSH(ans);
             }
             else if(postfix[i][0] == '-'){
                 a = stk[top];
-                b = stk[top-1];
+                POP();
+                b = stk[top];
+                POP();
+
                 ans = b-a;
-                POP();
-                POP();
+
                 PUSH(ans);
             }
             else if(postfix[i][0] == '*'){
                 a = stk[top];
-                b = stk[top-1];
+                POP();
+                b = stk[top];
+                POP();
                 ans = b*a;
-                POP();
-                POP();
+
                 PUSH(ans);
             }
             else if(postfix[i][0] == '/'){
                 a = stk[top];
-                b = stk[top-1];
+                POP();
+                b = stk[top];
+                POP();
                 ans = b/a;
-                POP();
-                POP();
+
                 PUSH(ans);
             }
             else{
