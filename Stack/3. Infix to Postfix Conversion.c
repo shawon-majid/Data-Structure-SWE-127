@@ -38,7 +38,7 @@ int main(){
     scanf("%d", &n);
     char infix[n+1][5], postfix[1000][5];
 
-    printf("Enter the infix: ");
+    printf("Enter the infix(press space after each object): ");
     for(int i = 0; i < n; i++){
         char temp[5];
         scanf("%s", temp);
