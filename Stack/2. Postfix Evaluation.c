@@ -4,10 +4,10 @@
 #include <stdlib.h>
 
 
-int stk[1000l];
+double stk[1000l];
 int top = -1;
 // push, pop, top, stack
-void PUSH(char el){
+void PUSH(double el){
     if(top >= 10000){
         printf("Stack Overflow!\n");
         exit(-1);
@@ -27,7 +27,8 @@ void POP()
 }
 
 int main(){
-    int n, res = 0;
+    int n;
+    double res;
     printf("Enter the size of postfix: ");
     scanf("%d", &n);
     char postfix[n+1][5];
@@ -53,7 +54,7 @@ int main(){
         int t_size = strlen(postfix[i]);
         if(t_size == 1){
             // + - * / number
-            int a, b, ans;
+            double a, b, ans;
             if(postfix[i][0] == '+'){
                 a = stk[top];
                 POP();
@@ -93,26 +94,26 @@ int main(){
                 PUSH(ans);
             }
             else{
-                int x;
-                sscanf(postfix[i], "%d", &x);
+                char *ptr;
+                double x = strtod(postfix[i], &ptr);
                 PUSH(x);
             }
         }
         else{
-            int x;
-            sscanf(postfix[i], "%d", &x);
+            char *ptr;
+            double x = strtod(postfix[i], &ptr);
             PUSH(x);
         }
         printf("pass %d: ", i+1);
         for(int k = 0; k <= top; k++){
-            printf("%d ", stk[k]);
+            printf("%g ", stk[k]);
         }
         printf("\n");
     }
     if(top != 0){
         printf("too many operands!\n");
     }
-    else printf("ans = %d\n", res);
+    else printf("ans = %g\n", res);
 
 }
 
